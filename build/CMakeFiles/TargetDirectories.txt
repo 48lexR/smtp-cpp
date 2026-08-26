@@ -1,0 +1,5 @@
+/home/cage/Documents/smtp-cpp/build/CMakeFiles/utils.dir
+/home/cage/Documents/smtp-cpp/build/CMakeFiles/smtp-server.dir
+/home/cage/Documents/smtp-cpp/build/CMakeFiles/smtp-client.dir
+/home/cage/Documents/smtp-cpp/build/CMakeFiles/edit_cache.dir
+/home/cage/Documents/smtp-cpp/build/CMakeFiles/rebuild_cache.dir

@@ -1,16 +1,18 @@
 #pragma once
-#include <stdlib>
-#include <stdio>
+//#include <stdlib>
+#include <iostream>
 #include <string>
-#include <stdio>
+// #include <stdio>
 
 class Response {
 	public:
-		Response(): code_(int code), msg_(std::move(msg)) {}
+		Response(int code, std::string &msg): code_(code) {
+			msg_ = std::string(msg);
+		}
 
-		std::string &getMessage() { return msg_; }
+		std::string &getMessage();
 
-		int getCode() { return code_; }
+		int getCode();
 	private:
 		std::string msg_;
 		int code_;
