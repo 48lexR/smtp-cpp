@@ -86,30 +86,30 @@ CMakeFiles/utils.dir/src/parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/utils.dir/src/parser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cage/Documents/smtp-cpp/src/parser.cpp -o CMakeFiles/utils.dir/src/parser.cpp.s
 
-CMakeFiles/utils.dir/src/response.cpp.o: CMakeFiles/utils.dir/flags.make
-CMakeFiles/utils.dir/src/response.cpp.o: /home/cage/Documents/smtp-cpp/src/response.cpp
-CMakeFiles/utils.dir/src/response.cpp.o: CMakeFiles/utils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cage/Documents/smtp-cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/utils.dir/src/response.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/utils.dir/src/response.cpp.o -MF CMakeFiles/utils.dir/src/response.cpp.o.d -o CMakeFiles/utils.dir/src/response.cpp.o -c /home/cage/Documents/smtp-cpp/src/response.cpp
+CMakeFiles/utils.dir/src/result.cpp.o: CMakeFiles/utils.dir/flags.make
+CMakeFiles/utils.dir/src/result.cpp.o: /home/cage/Documents/smtp-cpp/src/result.cpp
+CMakeFiles/utils.dir/src/result.cpp.o: CMakeFiles/utils.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cage/Documents/smtp-cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/utils.dir/src/result.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/utils.dir/src/result.cpp.o -MF CMakeFiles/utils.dir/src/result.cpp.o.d -o CMakeFiles/utils.dir/src/result.cpp.o -c /home/cage/Documents/smtp-cpp/src/result.cpp
 
-CMakeFiles/utils.dir/src/response.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/utils.dir/src/response.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cage/Documents/smtp-cpp/src/response.cpp > CMakeFiles/utils.dir/src/response.cpp.i
+CMakeFiles/utils.dir/src/result.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/utils.dir/src/result.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cage/Documents/smtp-cpp/src/result.cpp > CMakeFiles/utils.dir/src/result.cpp.i
 
-CMakeFiles/utils.dir/src/response.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/utils.dir/src/response.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cage/Documents/smtp-cpp/src/response.cpp -o CMakeFiles/utils.dir/src/response.cpp.s
+CMakeFiles/utils.dir/src/result.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/utils.dir/src/result.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cage/Documents/smtp-cpp/src/result.cpp -o CMakeFiles/utils.dir/src/result.cpp.s
 
 # Object files for target utils
 utils_OBJECTS = \
 "CMakeFiles/utils.dir/src/parser.cpp.o" \
-"CMakeFiles/utils.dir/src/response.cpp.o"
+"CMakeFiles/utils.dir/src/result.cpp.o"
 
 # External object files for target utils
 utils_EXTERNAL_OBJECTS =
 
 libutils.a: CMakeFiles/utils.dir/src/parser.cpp.o
-libutils.a: CMakeFiles/utils.dir/src/response.cpp.o
+libutils.a: CMakeFiles/utils.dir/src/result.cpp.o
 libutils.a: CMakeFiles/utils.dir/build.make
 libutils.a: CMakeFiles/utils.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cage/Documents/smtp-cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libutils.a"

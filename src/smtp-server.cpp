@@ -1,6 +1,6 @@
 #include <iostream>
 #include "parser.h"
-#include "response.h"
+#include "result.h"
 #include <fstream>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -14,7 +14,7 @@ class Server {
 	// static constexpr uint16_t BUF_SIZ = 1024;
 
 	public: 
-		Server(uint16_t port): port_(port) {}
+		Server(uint16_t port): port_(port), state_(0) {}
 		// Returns an error code w/ information on failuer
 		// 0 on success
 		int run(){
@@ -63,7 +63,7 @@ class Server {
 					std::string str(buf);
 					str = parser.trim_trailing_whitespace(str);
 					std::cerr << str << std::endl;
-					if(str.compare(std::string("QUIT"))){
+					if(!str.compare(std::string("QUIT"))){
 						break;
 					}
 				}
@@ -85,6 +85,11 @@ class Server {
 	
 	private:
 		uint16_t port_;
+		uint16_t state_; // consider making an ENUM?
+				 // 0 = receiving HELO
+				 // 1 = receiving MAIL
+				 // 2 = receiving RCPT
+				 // 3 = receiving DATA
 		Parser parser;
 };
 

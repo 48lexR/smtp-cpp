@@ -4,13 +4,13 @@
 #include <string>
 // #include <stdio>
 
-class Response {
+class Result {
 	public:
-		Response(int code, std::string &msg): code_(code) {
+		Result(int code, std::string msg): code_(code) {
 			msg_ = std::string(msg);
 		}
 
-		std::string &getMessage();
+		std::string getMessage();
 
 		int getCode();
 	private:

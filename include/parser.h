@@ -3,20 +3,25 @@
 #include <iostream>
 // #include <stdlib>
 #include <string>
-#include "response.h"
+#include <cstdint>
+#include "result.h"
 
-class Parser {
+class Parser {	
 	
 	public:
-		Response &parseHelo(std::string &msg);
-		Response &parseFrom(std::string &msg);
-		Response &parseRcpt(std::string &msg);
-		Response &parseQuit(std::string &msg);
+		Result parseHelo(std::string msg);
+		Result parseFrom(std::string msg);
+		Result parseRcpt(std::string msg);
+		Result parseQuit(std::string msg);
+		Result parseData(std::string msg);
+		Result parse_mail_command(std::string msg);
+		Result parse_rcpt_command(std::string msg);
 		std::string trim_trailing_whitespace(std::string &msg);
+		Result parse_path(std::string msg, size_t index);
+		Result parse_nullspace(std::string msg, size_t &index);
+		Result parse_whitespace(std::string msg, size_t &index);
 	private:
-		Response &parse_mail_command(std::string &msg);
-		Response &parse_path(std::string &msg);
-		Response &parse_nullspace(std::string &msg);
 
+		
 
 };

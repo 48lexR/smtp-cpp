@@ -1,2 +1,2 @@
-/usr/bin/ar qc libutils.a CMakeFiles/utils.dir/src/parser.cpp.o CMakeFiles/utils.dir/src/response.cpp.o
+/usr/bin/ar qc libutils.a CMakeFiles/utils.dir/src/parser.cpp.o CMakeFiles/utils.dir/src/result.cpp.o
 /usr/bin/ranlib libutils.a

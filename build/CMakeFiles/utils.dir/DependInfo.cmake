@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/cage/Documents/smtp-cpp/src/parser.cpp" "CMakeFiles/utils.dir/src/parser.cpp.o" "gcc" "CMakeFiles/utils.dir/src/parser.cpp.o.d"
-  "/home/cage/Documents/smtp-cpp/src/response.cpp" "CMakeFiles/utils.dir/src/response.cpp.o" "gcc" "CMakeFiles/utils.dir/src/response.cpp.o.d"
+  "/home/cage/Documents/smtp-cpp/src/result.cpp" "CMakeFiles/utils.dir/src/result.cpp.o" "gcc" "CMakeFiles/utils.dir/src/result.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

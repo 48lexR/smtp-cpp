@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/utils.dir/src/parser.cpp.o"
   "CMakeFiles/utils.dir/src/parser.cpp.o.d"
-  "CMakeFiles/utils.dir/src/response.cpp.o"
-  "CMakeFiles/utils.dir/src/response.cpp.o.d"
+  "CMakeFiles/utils.dir/src/result.cpp.o"
+  "CMakeFiles/utils.dir/src/result.cpp.o.d"
   "libutils.a"
   "libutils.pdb"
 )

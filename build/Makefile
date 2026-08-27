@@ -179,29 +179,29 @@ src/parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/parser.cpp.s
 .PHONY : src/parser.cpp.s
 
-src/response.o: src/response.cpp.o
-.PHONY : src/response.o
+src/result.o: src/result.cpp.o
+.PHONY : src/result.o
 
 # target to build an object file
-src/response.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/response.cpp.o
-.PHONY : src/response.cpp.o
+src/result.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/result.cpp.o
+.PHONY : src/result.cpp.o
 
-src/response.i: src/response.cpp.i
-.PHONY : src/response.i
+src/result.i: src/result.cpp.i
+.PHONY : src/result.i
 
 # target to preprocess a source file
-src/response.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/response.cpp.i
-.PHONY : src/response.cpp.i
+src/result.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/result.cpp.i
+.PHONY : src/result.cpp.i
 
-src/response.s: src/response.cpp.s
-.PHONY : src/response.s
+src/result.s: src/result.cpp.s
+.PHONY : src/result.s
 
 # target to generate assembly for a file
-src/response.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/response.cpp.s
-.PHONY : src/response.cpp.s
+src/result.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/result.cpp.s
+.PHONY : src/result.cpp.s
 
 src/smtp-client.o: src/smtp-client.cpp.o
 .PHONY : src/smtp-client.o
@@ -265,9 +265,9 @@ help:
 	@echo "... src/parser.o"
 	@echo "... src/parser.i"
 	@echo "... src/parser.s"
-	@echo "... src/response.o"
-	@echo "... src/response.i"
-	@echo "... src/response.s"
+	@echo "... src/result.o"
+	@echo "... src/result.i"
+	@echo "... src/result.s"
 	@echo "... src/smtp-client.o"
 	@echo "... src/smtp-client.i"
 	@echo "... src/smtp-client.s"

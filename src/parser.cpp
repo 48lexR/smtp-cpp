@@ -1,116 +1,116 @@
 #include "parser.h"
 
-auto Parser::parseHelo(std::string &msg) -> Response& {
-	std::string &invalid_sequence = "Invalid sequence of commands.";
-	Response fail(503, invalid_sequence);
+auto Parser::parseHelo(std::string msg) -> Result {	
 	if(msg.find("HELO") != 0){
+		return Result(-1, "");
+	}
+	// TODO: Get the domain out of the HELO message
+	return Result(0, "Hello");	
+}
+
+
+auto Parser::parseQuit(std::string msg) -> Result {
+	if(msg.find("QUIT") != std::string::npos){	
+		return Result(0, "Service closing transmission channel");
+	}	
+	return Result(-1, "");
+}
+
+auto Parser::parse_rcpt_command(std::string msg) -> Result {
+	// TODO: implement
+	Result fail(-1, "Command not recognized");
+
+	std::string rcpt("RCPT");
+	for(uint8_t i = 0; i < 4; i++){
+		if(msg[i] != rcpt[i]){
+			return fail;
+		}
+	}
+
+	size_t index = 4;
+	Result whitespace = parse_whitespace(msg, index);
+	if(whitespace.getCode()){
 		return fail;
 	}
 
-}
-
-auto Parser::parseFrom(std::string &msg) -> Response& {
-	Response &isQuit = parseQuit(msg);
-	if(isQuit.getCode() == 221){
-		return isQuit;
+	std::string to("TO:");
+	for(uint8_t j = 0; j < 3; j++){
+		if(to[j] != msg[index]){
+			return fail;	
+		}
+		++index;
 	}
 
-	Response &mail_command = parse_mail_command(msg);
-	if(mail_command.getCode() != 220){
-		return mail_command;
-	}
-
-	Response &reverse_path = parse_path(msg);
-	return reverse_path;
+	Result path = parse_path(msg, index);
+	return path;
 }
 
-auto Parser::parseRcpt(std::string &msg) -> Response& {
-	Response &isQuit = parseQuit(msg);
-	if(isQuit.getCode() == 221){
-		return isQuit;
-	}
-
-	Response &rcpt_command = parse_rcpt_command(msg);
-	if(rcpt_command.getCode() != 220){
-		return rcpt_command;
-	}
-
-	Response &forward_path = parse_path(msg);
-	return forward_path;
-}
-
-auto Parser::parseQuit(std::string &msg) -> Response& {
-	if(msg.find("QUIT") != std::string::npos){
-		std::string &closing ("Service closing transmission channel");
-		Response &q(221, closing);
-		return q;
-	}
-	Response &r(-1, "Not a QUIT message.");
-	return r;
-}
-
-auto Parser::parse_rcpt_command(std::string &msg) -> Response& {
-	return Response(0, nullptr);
-}
-
-auto Parser::parse_mail_command(std::string &msg) -> Response& {
+auto Parser::parse_mail_command(std::string msg) -> Result {
 	// TODO: implement
-	if(parseRcpt(msg).getCode() == 220 || parseData(msg).getCode() == 354){
-		std::string &invalid ("Invalid sequence of commands");
-		Response &e(503, invalid);	
-		return e;
-	}
+	Result fail(-1, "Command not recognized");
 
-	std::string mail = "MAIL";
-	std::string &not_recognized ("Command not recognized.");
-	Response &fail(500, not_recognized);
+	std::string mail = "MAIL";		
 	for(uint8_t i = 0; i < 4; i++){
 		if(msg[i] != mail[i]){
 			return fail;
 		}
 	}
 
-	size_t index = 0;
-	Response &whitespace = parse_whitespace(msg, index);
-	if(whitespace.getCode() != 220){
+	size_t index = 4;
+	Result whitespace = parse_whitespace(msg, index);
+	if(whitespace.getCode()){
 		return fail;
 	}
 
-	std::string from = "FROM";
-	for(uint8_t i = 0; i < 4; i++){
-		if(msg[i+index] != from[i]){
+	std::string from = "FROM:";
+	for(uint8_t i = 0; i < 5; i++){
+		if(msg[index] != from[i]){
 			return fail;
 		}
 		++index;
 	}
-	Response& nullspace = parse_nullspace(msg, index);
+	Result nullspace = parse_nullspace(msg, index);
+	Result path = parse_path(msg, index);
+	return path;
 }
 
-auto Parser::parse_path(std::string &msg) -> Response &{
-	
+auto Parser::parse_path(std::string msg, size_t index) -> Result {
+	// TODO: Implement
+	if(msg[index] != '<'){
+		return Result(-1, "");
+	}
+
+	return Result(0, "");
 }
 
-auto Parser::parse_nullspace(std::string &msg, size_t &index) -> Response &{
+auto Parser::parse_nullspace(std::string msg, size_t &index) -> Result {
 	parse_whitespace(msg, index);
-	return index;
+	return Result(250, "");
 }
 
-auto Parser::parse_whitespace(std::string &msg, size_t &index) -> Response& {
-	Response fail(550, "Command not recognized.");
-	Response success(250, "OK");
+auto Parser::parse_whitespace(std::string msg, size_t &index) -> Result {
+	Result fail(-1, "");
+	Result success(0, "OK");
 	if(msg[index] != ' ' || msg[index] != '\t'){
 		return fail;
 	}
 	for(size_t i = 0; i < msg.size() - index; i++){
 		if(msg[i + index] != ' ' || msg[i+index] != '\t'){
-			return success;
+			return success;	
 		}
 	}
 	return success;
 }
 
-auto Parser::trimTrailingWhitespace(std::string msg) -> std::string {
+auto Parser::trim_trailing_whitespace(std::string &msg) -> std::string {
 	std::string WHITESPACE = "\r\n";
-	size_t end = msg.find_not_last_of(WHITESPACE);
+	size_t end = msg.find_last_not_of(WHITESPACE);
 	return msg.substr(0, end + 1);
+}
+
+auto Parser::parseData(std::string msg) -> Result {
+	if(trim_trailing_whitespace(msg).compare("DATA")){
+		return Result(0, "");
+	}
+	return Result(-1, "Data command received. Please end with ."); 
 }

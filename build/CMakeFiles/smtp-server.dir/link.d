@@ -3,6 +3,7 @@ smtp-server: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/smtp-server.dir/src/smtp-server.cpp.o \
+  libutils.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -42,6 +43,8 @@ smtp-server: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o:
 
 CMakeFiles/smtp-server.dir/src/smtp-server.cpp.o:
+
+libutils.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 

@@ -4,7 +4,7 @@ project(csmtp VERSION 0.0.1)
 
 add_library(utils
 	src/parser.cpp
-	src/response.cpp
+	src/result.cpp
 )
 target_include_directories(utils PUBLIC src/ include/)
 
