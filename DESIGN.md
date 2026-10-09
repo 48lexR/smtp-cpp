@@ -8,5 +8,8 @@ The connection manager isn't concerned with exactly what's being sent, or how. I
 
 ## Parser 
 
-The parser should expose a couple mechanisms for converting between 
+The parser should parse commands and then pass them up to the Client. That way the Client is only concerned with managing the actual SMTP state machine. The parser will do the actual hard work here.
 
+## Client
+
+The Client is the easiest part, it will use the connection manager and the parser to manage the SMTP state machine (as outlined in RFC 821.) 
