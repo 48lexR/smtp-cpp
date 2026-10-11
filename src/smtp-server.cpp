@@ -1,100 +1,47 @@
-#include <iostream>
-#include "parser.h"
-#include "result.h"
-#include <fstream>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
+#include "server.h"
 
 /**
  * The server class
  * It handles the SMTP logic and writes the output to a regular file
  */ 
-class Server {
-	// static constexpr uint16_t BUF_SIZ = 1024;
 
-	public: 
-		Server(uint16_t port): port_(port), state_(0) {}
-		// Returns an error code w/ information on failuer
-		// 0 on success
-		int run(){
-			std::cerr << "Server is starting." << std::endl;
+namespace smtp {
 
-			int sock = socket(
-					AF_INET,
-					SOCK_STREAM,
-					0);
-			if(sock < 0){
-				std::cerr << "Socket failed." << std::endl;
-				return 1;
-			}
+  auto Server::Run(){
+    while(true){
+      Result recvd_message = Receive(); // calls the c.m. to get our line and the parser to parse it.
+      switch state_{
+      case INITIAL:
+        // failure
+        Send(recvd_message.type, recvd_message.hostname); // e.x. "HELO <domain>, It's nice to meet you."
+        if (recvd_message.type == HELO) {
+          // success
+          state_ = HELO_RECVD;
+        }
+        break;
+      case HELO_RECVD:
+        Send(recvd_message.type, recvd_message.hostname); // e.x. "220 OK"
+        break;
+      case MAIL_RECVD:
+        break;
+      case DATA:
+        break;
+      case QUIT_RECVD:
+        break;
+      default:
+        break;
+      }
+      std::string client_hostname = connection_manager_.receive();
+    }
+  }
 
-			sockaddr_in address;
-			address.sin_family = AF_INET;
-			address.sin_port = htons(port_);
-			address.sin_addr.s_addr = INADDR_ANY;
+  Server::Send(code_t code, std::string message){
 
-			if(bind(sock, 
-					(struct sockaddr *) &address,
-					sizeof(address)
-				 ) < 0 ){
-				std::cerr << "FAILED TO BIND TO SOCKET. EXITING." << std::endl;
-				close(sock);
-				return 1;
-			}
+  }
 
-			
-			if(listen(sock, 5) < 0){
-				std::cerr << "FAILED TO LISTEN. EXITING." << std::endl;
-				close(sock);
-				return 1;
-			}
-			std::cerr << "Listening on port " << port_ << std::endl;
-			while(true){	
-				int client_sock = accept(
-						sock,
-						nullptr,
-						nullptr
-						);
-				std::cerr << "Accepted connection." << std::endl;
-				while(true) {
-					char buf[1024] = { 0 };
-					recv(client_sock, buf, 1024, 0);
-					std::string str(buf);
-					str = parser.trim_trailing_whitespace(str);
-					std::cerr << str << std::endl;
-					if(!str.compare(std::string("QUIT"))){
-						break;
-					}
-				}
-				close(client_sock);
-			}
-			close(sock);
-			return 0; 
+  Result Receive(){
+    std::string message = connection_manager_.GetMessage();
+    Result res = parser_.Parse(message);
+  }
 
-		}
-
-		int write_to_file(std::string &fname, std::string &msg){
-			std::ofstream f; // output fstream
-			f.open(fname, std::ios_base::app); // open the file in append mode
-			f << msg;
-			f.close();
-			std::cout << "Successfully wrote to file." << std::endl;
-			return 0;
-		}
-	
-	private:
-		uint16_t port_;
-		uint16_t state_; // consider making an ENUM?
-				 // 0 = receiving HELO
-				 // 1 = receiving MAIL
-				 // 2 = receiving RCPT
-				 // 3 = receiving DATA
-		Parser parser;
-};
-
-int main(int argc, char ** argv){
-	uint16_t port = argc > 1 ? atoi(argv[1]) : 8000;
-	Server s(port);	
-	return s.run();
-}
+} // namespace smtp

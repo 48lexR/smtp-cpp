@@ -12,4 +12,4 @@ The parser should parse commands and then pass them up to the Client. That way t
 
 ## Client
 
-The Client is the easiest part, it will use the connection manager and the parser to manage the SMTP state machine (as outlined in RFC 821.) 
+The Client is the easiest part, it will use the connection manager and the parser to manage the SMTP state machine (as outlined in RFC 821.)

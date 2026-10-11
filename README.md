@@ -7,7 +7,7 @@ Description of SMTP
 
 SMTP is **originally** outlined in [RFC 821](www.rfc-editor.org/info/rfc821/), I will still describe it here (for my sake.) THIS RFC DOCUMENT HAS LONG BEEN OBSELETED, so this isn't a real mailserver! (It is, but there's no encryption or anything, so it's not practical any more.)
 
-SMTP is a **state machine** that allows for a push-protocol between servers and clients. Each client command has the same basic format: 
+SMTP is a **state machine** that allows for a push-protocol between servers and clients. SMTP runs over port 25 by default. Each client command has the same basic format: 
 
 `<command> <arguments>`
 
